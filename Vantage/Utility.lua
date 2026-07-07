@@ -93,4 +93,29 @@ function Utility.MakeDraggable(frame, handle)
     end)
 end
 
+-- Posts a JSON body to `url`. Roblox blocks HttpService requests from
+-- client-side scripts, so this leans on whichever request function your
+-- executor exposes (request / http_request / syn.request). Returns true/false
+-- plus an error message so callers can tell the player whether it worked.
+function Utility.HttpPost(url, jsonBody)
+    local requestFn = (syn and syn.request) or http_request or request
+ 
+    if not requestFn then
+        return false, "No HTTP request function available in this environment."
+    end
+ 
+    local ok, response = pcall(requestFn, {
+        Url     = url,
+        Method  = "POST",
+        Headers = { ["Content-Type"] = "application/json" },
+        Body    = jsonBody,
+    })
+ 
+    if not ok then
+        return false, tostring(response)
+    end
+ 
+    return true
+end
+
 return Utility

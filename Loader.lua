@@ -24,8 +24,7 @@ local config = ...
 -- ============================================================
 -- 1. Point this at your own repo (user/repo/branch)
 -- ============================================================
-local REPO_RAW = "https://raw.githubusercontent.com/YOUR_USERNAME/Vantage/main/"
-
+local REPO_RAW = "https://raw.githubusercontent.com/ttatt-dev/Development-UI-Library/main/"
 -- ============================================================
 -- 2. Fetch + compile helpers
 -- ============================================================
